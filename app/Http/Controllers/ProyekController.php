@@ -37,7 +37,19 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $request->validate([
+            'nama_proyek' => 'required|unique:proyek|max:100',
+            'deskripsi' => 'required'
+        ]); 
+        $query = DB::table('proyek')->insert([ 
+            "nama_proyek"=>$request["nama_proyek"], 
+            "deskripsi" => $request["deskripsi"],
+            "tgl_mulai" =>$request["tgl_mulai"],
+            "tgl_deadline"=>$request["tgl_deadline"]
+        ]);
+        
+        return redirect('/proyek')->with('success', 'Proyek baru berhasil disimpan');
     }
 
     /**
@@ -48,7 +60,9 @@ class ProyekController extends Controller
      */
     public function show($id)
     {
-        //
+        $proyek= DB::table('proyek')->where('proyek_id', $id)->first();
+        //dd($proyek);
+        return view ('proyek.show', compact('proyek'));
     }
 
     /**
@@ -59,12 +73,12 @@ class ProyekController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     public function add_staff($id)
     {
-        //
+        return view('proyek.add_staff');
     }
     /**
      * Update the specified resource in storage.

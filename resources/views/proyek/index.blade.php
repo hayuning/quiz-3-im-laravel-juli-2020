@@ -31,7 +31,10 @@
             <td> {{$proyek-deskripsi}}</td>
             <td>{{$proyek->tgl_mulai}}</td>
             <td>{{$proyek->tgl_deadline}}</td>
-            <td> <a href="/proyek/{{$proyek->proyek_id}}" class="btn btn-info btn-sm">Show</a> </td>
+            <td> <a href="/proyek/{{$proyek->proyek_id}}" class="btn btn-info btn-sm">Show</a> 
+            <a href="/proyek/{{$proyek->proyek_id}}" class="btn btn-info btn-sm">Edit</a>
+            <a href="/proyek/{{$proyek->proyek_id}}" class="btn btn-info btn-sm">Hapus</a>
+            </td>
           </tr>
          @endforeach
         </tbody>
